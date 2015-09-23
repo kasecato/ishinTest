@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../dist/all.min.css" rel="stylesheet" type="text/css">
+    <title>getYear</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th colspan="2">IE6/7</th>
+        <th colspan="2">IE8+/Chrome/Edge</th>
+    </tr>
+    <tr>
+        <td>(new Date()).getYear()</td>
+        <td><input id="getYear" type="text" /></td>
+        <td>(new Date()).getFullYear()</td>
+        <td><input id="getFullYear" type="text" /></td>
+    </tr>
+</table>
+<script>
+    var testMethod = {};
+
+    window.onload = function () {
+        testMethod.execute();
+    };
+
+    testMethod.execute = function () {
+        // act
+        var year = (new Date()).getYear();
+        document.getElementById('getYear').value = (new Date()).getYear();
+        document.getElementById('getFullYear').value = (new Date()).getFullYear();
+    };
+</script>
+</body>
+</html>

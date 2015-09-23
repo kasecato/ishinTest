@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../dist/all.min.css" rel="stylesheet" type="text/css">
+    <title>Teeda Ajax</title>
+</head>
+<body>
+<table>
+    <tr>
+        <th colspan="2">IE6/7</th>
+        <th colspan="2">IE8+/Chrome/Edge</th>
+    </tr>
+    <tr>
+        <td>new String(new Date())</td>
+        <td><input id="newDate" type="text"/></td>
+        <td>(new Date()).toUTCString()</td>
+        <td><input id="toUTCString" type="text"/></td>
+    </tr>
+    <tr>
+        <td colspan="2"></td>
+        <td>(new Date()).toDateString()</td>
+        <td><input id="toDateString" type="text"/></td>
+    </tr>
+    <tr>
+        <td colspan="2"></td>
+        <td>(new Date()).toISOString()</td>
+        <td><input id="toISOString" type="text"/></td>
+    </tr>
+    <tr>
+        <td colspan="2"></td>
+        <td>(new Date()).toJSON()</td>
+        <td><input id="toJSON" type="text"/></td>
+    </tr>
+    <tr>
+        <td colspan="2"></td>
+        <td>(new Date()).toLocaleDateString()</td>
+        <td><input id="toLocaleDateString" type="text"/></td>
+    </tr>
+    <tr>
+        <td colspan="2"></td>
+        <td>(new Date()).toLocaleTimeString()</td>
+        <td><input id="toLocaleTimeString" type="text"/></td>
+    </tr>
+    <tr>
+        <td colspan="2"></td>
+        <td>(new Date()).toLocaleString()</td>
+        <td><input id="toLocaleString" type="text"/></td>
+    </tr>
+    <tr>
+        <td colspan="2"></td>
+        <td>(new Date()).toTimeString()</td>
+        <td><input id="toTimeString" type="text"/></td>
+    </tr>
+    <tr>
+        <td colspan="2"></td>
+        <td>(new Date()).toGMTString()</td>
+        <td><input id="toGMTString" type="text"/></td>
+    </tr>
+</table>
+<script>
+    var testMethod = {};
+
+    window.onload = function () {
+        testMethod.execute();
+    };
+
+    testMethod.execute = function () {
+        // act
+        document.getElementById('newDate').value = new String(new Date());
+        document.getElementById('toUTCString').value = (new Date()).toUTCString();
+        document.getElementById('toDateString').value = (new Date()).toDateString();
+        document.getElementById('toISOString').value = (new Date()).toISOString();
+        document.getElementById('toJSON').value = (new Date()).toJSON();
+        document.getElementById('toLocaleDateString').value = (new Date()).toLocaleDateString();
+        document.getElementById('toLocaleTimeString').value = (new Date()).toLocaleTimeString();
+        document.getElementById('toLocaleString').value = (new Date()).toLocaleString();
+        document.getElementById('toTimeString').value = (new Date()).toTimeString();
+        document.getElementById('toGMTString').value = (new Date()).toGMTString();
+    };
+</script>
+</body>
+</html>

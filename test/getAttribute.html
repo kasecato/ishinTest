@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../dist/all.min.css" rel="stylesheet" type="text/css">
+    <title>CSS Text</title>
+</head>
+<body>
+<input id="getAttribute" style="display: block;" readonly="readonly" disabled="disabled" value="STALLOWN3D!">
+<table>
+    <tr>
+        <th colspan="2">IE6/7</th>
+        <th colspan="2">IE8+/Chrome/Edge</th>
+    </tr>
+    <tr>
+        <td>cssText</td>
+        <td><input id="cssText" type="text"/></td>
+        <td>display</td>
+        <td><input id="display" type="text"/></td>
+    </tr>
+    <tr>
+        <td>getAttribute('readonly')</td>
+        <td><input id="getReadonly" type="text"/></td>
+        <td>readOnly</td>
+        <td><input id="readOnly" type="text"/></td>
+    </tr>
+    <tr>
+        <td>getAttribute('disabled')</td>
+        <td><input id="getDisabled" type="text"/></td>
+        <td>disabled</td>
+        <td><input id="disabled" type="text"/></td>
+    </tr>
+</table>
+<script>
+    var testMethod = {};
+
+    window.onload = function () {
+        testMethod.execute();
+    };
+
+    testMethod.execute = function () {
+        // arrange
+        var test = document.getElementById('getAttribute');
+
+        // act
+        document.getElementById('cssText').value = test.style.cssText;
+        document.getElementById('display').value = test.style.display;
+        document.getElementById('getReadonly').value = test.getAttribute('readonly');
+        document.getElementById('readOnly').value = test.readOnly;
+        document.getElementById('getDisabled').value = test.getAttribute('disabled');
+        document.getElementById('disabled').value = test.disabled;
+    };
+</script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../dist/all.min.css" rel="stylesheet" type="text/css">
+    <title>getElementBy</title>
+</head>
+<body>
+<input id="getElementById" name="getElementsByName" value="STALLOWN3D!">
+<table>
+    <tr>
+        <th colspan="2">IE6/7</th>
+        <th colspan="2">IE8+/Chrome/Edge</th>
+    </tr>
+    <tr>
+        <td>getElementById</td>
+        <td><input id="getElementByIdOld" type="text" /></td>
+        <td>getElementById</td>
+        <td><input id="getElementByIdNew" type="text" /></td>
+    </tr>
+    <tr>
+        <td>getElementsByName</td>
+        <td><input id="getElementsByNameOld" type="text" /></td>
+        <td>getElementsByName</td>
+        <td><input id="getElementsByNameNew" type="text" /></td>
+    </tr>
+</table>
+<script>
+    var testMethod = {};
+
+    window.onload = function () {
+        testMethod.execute();
+    };
+
+    testMethod.execute = function () {
+        // act
+        var year = (new Date()).getYear();
+        document.getElementById('getElementByIdOld').value = document.getElementById('getelementsbyname').value;
+        document.getElementById('getElementByIdNew').value = document.getElementById('getelementsbyname').value;
+        document.getElementById('getElementsByNameOld').value = document.getElementsByName('getelementbyid')[0].value;
+        document.getElementById('getElementsByNameNew').value = document.getElementsByName('getelementbyid')[0].value;
+    };
+
+
+
+    /**
+     * IEか判定する
+     *
+     * @returns {Boolean} IEの場合に'trueを返す
+     */
+    function isIE7() {
+        return !(document.documentMode && document.documentMode >= 8 || !document.all);
+    }
+
+    /**
+     * IE7以前のdocument.getElement系動作をシミュレートする
+     */
+    if (!isIE7()) {
+
+        /**
+         * IE7以前のdocument.getElementByIdを再現するProxy
+         * (IE7以前は大小文字区別なしのid属性とname属性で要素を取得していた)
+         */
+        document._oldGetElementById = document.getElementById;
+        document.getElementById = function(idOrName) {
+            if (!idOrName.toLowerCase) { return undefined; }
+
+            var idOrNameLower = idOrName.toLowerCase();
+            var $elements = $('[id],[name]').filter(function() {
+                return (this.id && this.id.toLowerCase && this.id.toLowerCase() == idOrNameLower) ||
+                        (this.name && this.name.toLowerCase && this.name.toLowerCase() == idOrNameLower);
+            });
+            return $elements[0];
+        };
+
+        /**
+         * IE7以前のdocument.getElementsByNameを再現するProxy
+         * (IE7以前は大小文字区別なしのid属性とname属性で要素を取得していた)
+         */
+        document._oldGetElementsByName = document.getElementsByName;
+        document.getElementsByName = function(idOrName) {
+            if (!idOrName.toLowerCase) { return undefined; }
+
+            var idOrNameLower = idOrName.toLowerCase();
+            var $elements = $('[id],[name]').filter(function() {
+                return (this.id && this.id.toLowerCase && this.id.toLowerCase() == idOrNameLower) ||
+                        (this.name && this.name.toLowerCase && this.name.toLowerCase() == idOrNameLower);
+            });
+            return $elements;
+        };
+    }
+
+</script>
+<script src="../dist/all.js"></script>
+</body>
+</html>
