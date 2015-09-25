@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../dist/all.min.css" rel="stylesheet" type="text/css">
+    <title>new Function</title>
+</head>
+<body>
+<h1>new Function</h1>
+<table>
+    <tr>
+        <th colspan="2">IE6/7</th>
+        <th colspan="2">IE8+/Chrome/Edge</th>
+    </tr>
+    <tr>
+        <td>new Function</td>
+        <td><input id="newFunction" type="text" value="press any key" readonly="readonly"/></td>
+        <td>function</td>
+        <td><input id="function" type="text" value="press any key" readonly="readonly"/></td>
+    </tr>
+    <tr>
+        <td colspan="2">event = function(){};</td>
+        <td colspan="2"><input id="eventFunction" type="text" value="press any key" readonly="readonly"/></td>
+    </tr>
+</table>
+<script>
+    var testMethod = {};
+
+    window.onload = function () {
+        testMethod.execute();
+    };
+
+    testMethod.execute = function () {
+        // arrange
+        var e1 = document.getElementById('newFunction');
+        var e2 = document.getElementById('function');
+        var e3 = document.getElementById('eventFunction');
+
+        // act
+        e1.setAttribute('onkeydown', new Function('return alert("new Function");'));
+        e2.setAttribute('onkeydown', 'return alert("function");');
+        e3.onkeydown = function () {
+            return alert("event function");
+        };
+    };
+</script>
+</body>
+</html>
