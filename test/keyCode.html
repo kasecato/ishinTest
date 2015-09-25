@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../dist/all.min.css" rel="stylesheet" type="text/css">
+    <title>keyCode</title>
+</head>
+<body>
+<h1>keyCode</h1>
+<table>
+    <tr>
+        <td>keyCode = 9</td>
+        <td><input id="keyCodeEvent" type="text"/></td>
+        <td><input value="＼(^o^)／" type="text"/></td>
+    </tr>
+</table>
+<script>
+    var testMethod = {};
+
+    window.onload = function () {
+        testMethod.execute();
+    };
+
+    testMethod.execute = function () {
+        // act
+        document.getElementById('keyCodeEvent').onkeydown = function (e) {
+            e = e || window.event;
+            if (e.keyCode === 13) {
+                window.event.keyCode = 9;
+            }
+        };
+    };
+</script>
+</body>
+</html>

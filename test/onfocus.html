@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="../dist/all.min.css" rel="stylesheet" type="text/css">
+    <title>onfocus & select</title>
+</head>
+<body>
+<h1>onfocus & select</h1>
+<table>
+    <tr>
+        <th colspan="2">IE6/7</th>
+        <th colspan="2">IE8+/Chrome/Edge</th>
+    </tr>
+    <tr>
+        <td>elem.select()</td>
+        <td><input id="select" type="text" value="＼(^o^)／"/></td>
+        <td>setTimeput(function(){ elem.select(); }, 0)</td>
+        <td><input id="setTimeout" type="text" value="＼(^o^)／"/></td>
+    </tr>
+</table>
+<script>
+    var testMethod = {};
+
+    window.onload = function () {
+        testMethod.execute();
+    };
+
+    testMethod.execute = function () {
+        // arrange
+        var elemA = document.getElementById('select');
+        var elemB = document.getElementById('setTimeout');
+
+        // act
+        elemA.onfocus = function () {
+            elemA.select();
+        };
+        elemB.onfocus = function () {
+            setTimeout(function () {
+                elemB.select();
+            }, 0);
+        };
+    };
+</script>
+</body>
+</html>
