@@ -23,6 +23,10 @@
         <td colspan="2">event = function(){};</td>
         <td colspan="2"><input id="eventFunction" type="text" value="press any key" readonly="readonly"/></td>
     </tr>
+    <tr>
+        <td colspan="2">addEventListener()</td>
+        <td colspan="2"><input id="addEventListener" type="text" value="press any key" readonly="readonly"/></td>
+    </tr>
 </table>
 <script>
     var testMethod = {};
@@ -36,6 +40,7 @@
         var e1 = document.getElementById('newFunction');
         var e2 = document.getElementById('function');
         var e3 = document.getElementById('eventFunction');
+        var e4 = document.getElementById('addEventListener');
 
         // act
         e1.setAttribute('onkeydown', new Function('return alert("new Function");'));
@@ -43,6 +48,9 @@
         e3.onkeydown = function () {
             return alert("event function");
         };
+        e4.addEventListener('keydown', function () {
+            return alert("addEventListener");
+        }, false);
     };
 </script>
 </body>
